@@ -14,7 +14,7 @@ def clean_dataset(df):
     df = df.dropna(how='all').copy()
     
     # Strip string values
-    for col in df.select_dtypes(include=['object']).columns:
+    for col in df.select_dtypes(include=['object', 'string']).columns:
         df[col] = df[col].astype(str).str.strip()
         
     # Convert date column
@@ -25,7 +25,7 @@ def clean_dataset(df):
         df['Date'] = pd.to_datetime(df['Date'], format='%d-%m-%Y', errors='coerce')
         
         # Drop rows where Date could not be parsed
-        df = df.dropna(subset=['Date'])
+        df = df.dropna(subset=['Date']).copy()
         
         # Sort by date
         df = df.sort_values('Date').reset_index(drop=True)

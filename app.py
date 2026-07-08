@@ -25,16 +25,54 @@ st.markdown("""
         font-family: 'Outfit', sans-serif;
     }
     
-    /* Main container background */
-    .stApp {
-        background-color: #0d0e15;
-        color: #e2e8f0;
+    /* Main container and ALL internal Streamlit containers */
+    .stApp,
+    [data-testid="stMain"],
+    [data-testid="stMainBlockContainer"],
+    [data-testid="stVerticalBlock"],
+    [data-testid="stHeader"],
+    [data-testid="stBottom"],
+    [data-testid="stAppViewBlockContainer"],
+    .main .block-container,
+    .main,
+    header {
+        background-color: #0d0e15 !important;
+        color: #e2e8f0 !important;
+    }
+    
+    /* Ensure the top header bar blends */
+    header[data-testid="stHeader"] {
+        background-color: rgba(13, 14, 21, 0.95) !important;
+        backdrop-filter: blur(10px);
     }
     
     /* Styling sidebar */
     section[data-testid="stSidebar"] {
         background-color: #12131e !important;
         border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    section[data-testid="stSidebar"] > div {
+        background-color: #12131e !important;
+    }
+    
+    /* Fix all text colors inside Streamlit widgets */
+    .stMarkdown, .stMarkdown p, .stMarkdown li,
+    .stRadio label, .stRadio div,
+    .stMultiSelect label,
+    .stSelectbox label,
+    h1, h2, h3, h4, h5, h6,
+    p, span, label, div {
+        color: #e2e8f0 !important;
+    }
+    
+    /* Fix radio button label text visibility */
+    .stRadio > div[role="radiogroup"] label {
+        color: #e2e8f0 !important;
+    }
+    
+    /* Fix subheader colors */
+    .stSubheader, [data-testid="stSubheader"] {
+        color: #e2e8f0 !important;
     }
     
     /* Header card */
@@ -57,7 +95,7 @@ st.markdown("""
         margin-bottom: 0.5rem;
     }
     .header-subtitle {
-        color: #94a3b8;
+        color: #94a3b8 !important;
         font-size: 1.1rem;
         font-weight: 300;
     }
@@ -91,7 +129,7 @@ st.markdown("""
         -webkit-text-fill-color: transparent !important;
     }
     .kpi-label {
-        color: #94a3b8;
+        color: #94a3b8 !important;
         font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
@@ -105,6 +143,10 @@ st.markdown("""
         border-radius: 4px;
         padding: 1rem;
         margin: 1rem 0;
+        color: #e2e8f0 !important;
+    }
+    .insight-box b {
+        color: #34d399 !important;
     }
     .policy-card {
         background: rgba(30, 41, 59, 0.5);
@@ -115,9 +157,40 @@ st.markdown("""
     }
     .policy-title {
         font-weight: 600;
-        color: #38bdf8;
+        color: #38bdf8 !important;
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
+    }
+    
+    /* Fix Streamlit dataframe dark background */
+    [data-testid="stDataFrame"],
+    .stDataFrame {
+        background-color: rgba(18, 19, 30, 0.8) !important;
+        border-radius: 8px;
+    }
+    
+    /* Fix Streamlit multiselect & other input widgets */
+    .stMultiSelect [data-baseweb="select"],
+    .stSelectbox [data-baseweb="select"] {
+        background-color: #1a1b2e !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Fix metric cards */
+    [data-testid="stMetric"] {
+        background-color: rgba(22, 28, 45, 0.6) !important;
+        border-radius: 8px;
+        padding: 0.75rem;
+    }
+    
+    /* Bottom toolbar area */
+    [data-testid="stBottom"] > div {
+        background-color: #0d0e15 !important;
+    }
+    
+    /* Plotly chart background fix */
+    .js-plotly-plot .plotly .main-svg {
+        background: transparent !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -398,8 +471,8 @@ elif page == "COVID-19 Impact":
         # Display KPI cards comparing Pre vs Post lockdown rates
         col1, col2, col3 = st.columns(3)
         
-        pre_rate = impact_table.loc[impact_table['Period'].str.contains('Pre'), 'Avg Unemployment Rate (%)'].values[0]
-        lock_rate = impact_table.loc[impact_table['Period'].str.contains('Lockdown'), 'Avg Unemployment Rate (%)'].values[0]
+        pre_rate = impact_table.loc[impact_table['Period'].str.startswith('Pre'), 'Avg Unemployment Rate (%)'].values[0]
+        lock_rate = impact_table.loc[impact_table['Period'].str.startswith('Lockdown'), 'Avg Unemployment Rate (%)'].values[0]
         abs_change = lock_rate - pre_rate
         
         with col1:
