@@ -12,13 +12,13 @@ An interactive **Streamlit dashboard** that performs comprehensive analysis of u
 
 ## 🎯 Features
 
-- **🧹 Automated Data Pipeline** — Downloads, cleans, and processes the CMIE unemployment datasets automatically
-- **📊 Interactive Dashboard** — Premium dark-themed UI with glassmorphism styling and smooth animations
-- **📈 National Trends** — Track employment rate, labour participation, and employed population over time
-- **🗺️ State-wise Breakdown** — Compare unemployment across Indian states with interactive filters
-- **🦠 COVID-19 Impact Analysis** — Quantify the lockdown shock with pre vs. post-lockdown statistics
-- **🏢 Rural vs Urban Dynamics** — Analyze disparities between rural and urban employment patterns
-- **💡 Policy Insights** — Data-driven policy recommendations for economic resilience
+- **🧹 Automated Data Pipeline** - Downloads, cleans, and processes the CMIE unemployment datasets automatically
+- **📊 Interactive Dashboard** - Premium dark-themed UI with glassmorphism styling and smooth animations
+- **📈 National Trends** - Track employment rate, labour participation, and employed population over time
+- **🗺️ State-wise Breakdown** - Compare unemployment across Indian states with interactive filters
+- **🦠 COVID-19 Impact Analysis** - Quantify the lockdown shock with pre vs. post-lockdown statistics
+- **🏢 Rural vs Urban Dynamics** - Analyze disparities between rural and urban employment patterns
+- **💡 Policy Insights** - Data-driven policy recommendations for economic resilience
 
 ## 🖼️ Dashboard Sections
 
@@ -96,12 +96,12 @@ The datasets are sourced from the [Unemployment in India](https://www.kaggle.com
 
 ## 🛠️ Tech Stack
 
-- **Python 3.10+** — Core language
-- **Streamlit** — Web dashboard framework
-- **Plotly** — Interactive charts and visualizations
-- **Pandas** — Data manipulation and analysis
-- **NumPy** — Numerical computing
-- **Requests** — HTTP dataset downloads
+- **Python 3.10+** - Core language
+- **Streamlit** - Web dashboard framework
+- **Plotly** - Interactive charts and visualizations
+- **Pandas** - Data manipulation and analysis
+- **NumPy** - Numerical computing
+- **Requests** - HTTP dataset downloads
 
 ## 📄 License
 
